@@ -35,11 +35,11 @@ args = parser.parse_args()
 ious = np.arange(0.5, 1, 0.05)
 print(ious)
 # ious = [0.5]
-classes = 3
+no_of_classes = len(classes)
 APs = []
 precisions = []
 recalls = []
-for i in range(classes):
+for i in range(no_of_classes):
         APs.append([])
         precisions.append([])
         recalls.append([])
@@ -919,14 +919,14 @@ for i in range(classes):
 
 
 temp = []
-for i in range(classes):
+for i in range(no_of_classes):
 	temp.append(sum(APs[i])/len(APs[i]))
 
 for i,key in enumerate(ap_dictionary.keys()):
 	ap_dictionary[key] = temp[i]
 
 print(temp)
-mAP = (sum(temp)/classes)
+mAP = (sum(temp)/no_of_classes)
 
 window_title = "mAP"
 plot_title = "mAP = {0:.2f}%".format(mAP*100)
